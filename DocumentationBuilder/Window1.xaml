@@ -1,0 +1,15 @@
+﻿<Window x:Name="About_Window" x:Class="DocumentationBuilder.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DocumentationBuilder"
+        mc:Ignorable="d"
+        Title="About" Height="252.668" Width="497.216">
+    <Grid>
+        <Label x:Name="DocumentTitle" Content="Documentation Builder -- Last Build: July 29, 2019" HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10" Margin="10,10,0,0" Height="47" Width="469" FontSize="18"/>
+        <Label x:Name="PersonalInfo" Content="Developed by Ben Wilk&#xD;&#xA;&#xD;&#xA;Contact github.com/benjaminwilk for any issues." HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10" Margin="10,88,0,0" Height="75" Width="469"/>
+        <Button Margin="183,181,182,10" Content="Close" Click="Button_Click"></Button>
+        
+    </Grid>
+</Window>

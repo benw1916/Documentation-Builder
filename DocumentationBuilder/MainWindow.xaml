@@ -1,0 +1,84 @@
+﻿<Window x:Class="DocumentationBuilder.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DocumentationBuilder"
+        mc:Ignorable="d"
+        Title="Documentation Builder" Height="484.454" Width="668.446">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+
+        <DockPanel>
+            <Menu DockPanel.Dock="Top">
+                <MenuItem x:Name="FileMenuButton" Header="_File">
+                    <MenuItem x:Name="MenuAboutButton" Header="_About" Click="MenuAboutButton_Click"/>
+                    <MenuItem x:Name="MenuCloseButton" Header="_Close" Click="MenuCloseButton_Click"/>
+                </MenuItem>
+            </Menu>
+            <StackPanel Margin="0,0,0,27">
+                <TabControl Height="381" Width="614">
+                    <TabItem Header="Input">
+                        <Grid Background="#FFE5E5E5">
+                            <Canvas HorizontalAlignment="Left" Height="100">
+                                <TextBox x:Name="InputBox" HorizontalAlignment="Left" Height="330" TextWrapping="Wrap" Text="Paste in Functions you would like formatted" VerticalAlignment="Top" Width="582" AcceptsReturn="True" FontFamily="Courier New" FontSize="11" VerticalScrollBarVisibility="Auto" Canvas.Left="11" Canvas.Top="-109" LostFocus="InputBox_LostFocus" MouseDoubleClick="InputBox_MouseDoubleClick" GotFocus="InputBox_GotFocus"/>
+                            </Canvas>
+                        </Grid>
+                    </TabItem>
+                    <TabItem Header="Options">
+                        <Grid Background="#FFF3F1F1">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition/>
+                            </Grid.ColumnDefinitions>
+                            <GroupBox x:Name="OptionOutputSettingsBox" HorizontalAlignment="Left" VerticalAlignment="Top" Header="Output Settings" Height="92" Width="464" Margin="77,243,0,0" Grid.ColumnSpan="2">
+                                <Canvas>
+                                    <Canvas Height="100" Canvas.Left="10" Width="465">
+                                        <RadioButton x:Name="PrintToScreenRadio" Content="Print to Screen" Canvas.Left="10" Canvas.Top="10" IsEnabled="True" IsChecked="True"/>
+                                        <RadioButton x:Name="PrintToFileRadio" Content="Print to File" Canvas.Left="10" Canvas.Top="40" IsEnabled="True"/>
+                                        <TextBox x:Name="FilePath" Height="23" Canvas.Left="91" TextWrapping="Wrap" Text="Filepath" IsEnabled="{Binding ElementName=PrintToFileRadio, Path=IsChecked}" Canvas.Top="38" Width="279" GotFocus="FilePath_GotFocus"/>
+                                        <Button x:Name="FilePathBrowseButton" Content="Browse" Canvas.Left="375" Canvas.Top="40" IsEnabled="{Binding ElementName=PrintToFileRadio, Path=IsChecked}" Width="61" Click="FilePathBrowseButton_Click"/>
+                                    </Canvas>
+                                </Canvas>
+                            </GroupBox>
+                            <GroupBox x:Name="WidthBox" Header="Width" HorizontalAlignment="Left" Height="179" Margin="344,5,0,0" VerticalAlignment="Top" Width="250" Grid.Column="1">
+                                <Canvas Height="167" InkCanvas.Left="10" Margin="0,5,-2,5">
+                                    <Label x:Name="OptionsWidthText" Content="Type Width: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="26"/>
+                                    <Label x:Name="OptionsMethodText" Content="Method Width: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="60"/>
+                                    <TextBox x:Name="TypeWidthInput" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Canvas.Left="123" Canvas.Top="28" Initialized="TypeWidthInput_Initialized" MaxLength="100" GotFocus="TypeWidthInput_GotFocus" LostFocus="TypeWidthInput_LostFocus"/>
+                                    <TextBox x:Name="MethodWidthInput" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="35" Canvas.Left="123" Canvas.Top="63" Initialized="MethodWidthInput_Initialized" MaxLength="100" GotFocus="MethodWidthInput_GotFocus" LostFocus="MethodWidthInput_LostFocus"/>
+                                    <Button x:Name="resetWidths" Content="Reset" Canvas.Left="10" Canvas.Top="126" Width="81" Height="23" Click="WidthResetButton_Click" />
+                                </Canvas>
+                            </GroupBox>
+                            <GroupBox Grid.Column="1" Header="Icons" HorizontalAlignment="Left" Height="179" Margin="10,5,0,0" VerticalAlignment="Top" Width="250">
+                                <Canvas x:Name="IconBox" HorizontalAlignment="Left" Height="174" Margin="0,0,-2,-4" VerticalAlignment="Top" Width="240">
+                                    <Label x:Name="OptionsVerticalText_Copy" Content="Vertical Icon: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="10"/>
+                                    <Label x:Name="OptionsHorizontalText_Copy" Content="Horizontal Icon: " HorizontalAlignment="Left" VerticalAlignment="Top" Canvas.Left="10" Canvas.Top="45"/>
+                                    <Label Content="Cross Icon: " HorizontalAlignment="Left" VerticalAlignment="Top" Width="70" Canvas.Left="10" Canvas.Top="82"/>
+                                    <TextBox x:Name="VerticalIconInput" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" Padding="8,1,1,1" Canvas.Left="127" Canvas.Top="13" Initialized="VerticalIconInput_Initialized" MaxLength="5" LostFocus="VerticalIconInput_LostFocus" GotFocus="VerticalIconInput_GotFocus"/>
+                                    <TextBox x:Name="HorizontalIconInput" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" Padding="7,1,1,1" Canvas.Left="127" Canvas.Top="47" Initialized="HorizontalIconInput_Initialized" MaxLength="5" GotFocus="HorizontalIconInput_GotFocus" LostFocus="HorizontalIconInput_LostFocus"/>
+                                    <TextBox x:Name="CrossIconInput" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="27" RenderTransformOrigin="0.574,0.852" Padding="4,1,10,1" Canvas.Left="127" Canvas.Top="82" Initialized="CrossIconInput_Initialized" MaxLength="5" GotFocus="CrossIconInput_GotFocus" LostFocus="CrossIconInput_LostFocus"/>
+                                    <Button x:Name="IconResetButton" Content="Reset" Canvas.Left="10" Canvas.Top="133" Width="81" Height="23" Click="IconsResetButton_Click" />
+                                </Canvas>
+                            </GroupBox>
+                            <GroupBox Grid.Column="1" Header="Language" HorizontalAlignment="Left" Height="56" Margin="199,185,0,0" VerticalAlignment="Top" Width="205" RenderTransformOrigin="0.5,0.5">
+                                <ComboBox x:Name="LanguageDropdown" HorizontalAlignment="Left" Height="22" Margin="10,8,0,0" VerticalAlignment="Top" Width="178">
+                                    <ComboBoxItem x:Name="C_Selector" Content="C#" IsSelected="True"/>
+                                    <ComboBoxItem x:Name="JavaSelector" Content="Java"/>
+                                    <ComboBoxItem x:Name="PythonSelector" Content="Python"/>
+                                    <ComboBoxItem x:Name="RubySelector" Content="Ruby"/>
+                                </ComboBox>
+                            </GroupBox>
+                        </Grid>
+                    </TabItem>
+                </TabControl>
+            </StackPanel>
+        </DockPanel>
+        <Button x:Name="ComputationButton" Content="Compute" HorizontalAlignment="Left" Margin="563,409,0,0" VerticalAlignment="Top" Width="75" Click="ComputationButton_Click"/>
+        <Button x:Name="QuitButton" Content="Quit" HorizontalAlignment="Left" Margin="26,410,0,0" VerticalAlignment="Top" Width="75" Click="QuitButton_Click"/>
+    </Grid>
+
+</Window>
